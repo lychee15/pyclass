@@ -85,14 +85,25 @@ class Spider(object):
                         'keyword = "{0}" '
                         'WHERE id = {1}'.format(self.craw(label), id)
                     )
+            cur.close()
             conn.commit()
+            conn.close()
         except Exception, e:
             print Exception, ":", e
-        finally:
-            cur.close()
-            conn.close()
+            exit(0)
 
 
 if __name__ == '__main__':
     spider = Spider()
     spider.update()
+
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+
+ekey = 'qwertyuiopasdfghjklzxcvbnm'
+to_enc = '新闻'
+
+enc_res = hmac.new(ekey, to_enc, hashlib.md5).hexdigest()
+print enc_res

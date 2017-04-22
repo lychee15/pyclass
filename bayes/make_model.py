@@ -5,6 +5,7 @@ import sys
 import os
 import MySQLdb
 from util.schemas import *
+from util.encrypt import *
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -12,8 +13,8 @@ sys.setdefaultencoding('utf-8')
 
 class MakeModel(object):
     def __init__(self):
-        self._clzss = u'新闻'
-        self._modelfile = sys.path[0] + '/model/' + self._clzss + '.txt'
+        self._clzss = '新闻'
+        self._modelfile = sys.path[0] + '/model/' + hmacmd5(self._clzss) + '.txt'
         self._host = xinrui['host']
         self._port = xinrui['port']
         self._user = xinrui['user']
@@ -24,16 +25,16 @@ class MakeModel(object):
         try:
             result = file(self._modelfile, 'w+')
             keyword_set = self.get_keyword()
-            if keyword_set != 0:
-                for label, keyword, newword in keyword_set:
-                    words = set(filter(lambda s: s and s.strip(), (str(keyword) + ',' + str(newword)).replace('None', '').split(',')))
-                    for word in words:
-                        result.write(label + ',' + word + '\n')
+            for label, keyword, newword in keyword_set:
+                words = set(filter(lambda s: s and s.strip(), (str(keyword) + ',' + str(newword)).replace('None', '').split(',')))
+                for word in words:
+                    result.write(label + ' ' + word + '\n')
             result.close()
         except Exception, e:
             result.close()
             os.remove(self._modelfile)
             print Exception, ":", e
+            exit(0)
 
     def get_keyword(self):
         try:
@@ -53,13 +54,13 @@ class MakeModel(object):
                 'newword IS NOT NULL AND newword != ""'
                 ')'.format(self._clzss)
             ))
+            cur.close()
             conn.commit()
+            conn.close()
             return result_set
         except Exception, e:
             print Exception, ":", e
-        finally:
-            cur.close()
-            conn.close()
+            exit(0)
 
 
 if __name__ == '__main__':
