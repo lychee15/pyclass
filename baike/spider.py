@@ -11,7 +11,6 @@ import jieba.analyse
 import re
 import MySQLdb
 import sys
-import traceback
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -64,18 +63,33 @@ class Spider(object):
 
     def update(self):
         try:
-            conn = MySQLdb.connect(host=self._host, port=self._port, user=self._user, passwd=self._passwd, db=self._db,
-                                   charset='utf8')
+            conn = MySQLdb.connect(host=self._host, port=self._port, user=self._user, passwd=self._passwd, db=self._db, charset='utf8')
             cur = conn.cursor()
-            result = cur.execute('SELECT id,label FROM model WHERE keyword IS NULL OR keyword = ""')
+            result = cur.execute(
+                'SELECT '
+                'id,label '
+                'FROM '
+                'model '
+                'WHERE '
+                'keyword IS NULL '
+                'OR '
+                'keyword = ""'
+            )
             if result != 0:
                 for id, label in cur.fetchmany(result):
-                    cur.execute('UPDATE model SET keyword="{0}" WHERE id={1}'.format(self.craw(label), id))
-            cur.close()
+                    cur.execute(
+                        'UPDATE '
+                        'model '
+                        'SET '
+                        'keyword = "{0}" '
+                        'WHERE id = {1}'.format(self.craw(label), id)
+                    )
             conn.commit()
-            conn.close()
         except Exception, e:
             print Exception, ":", e
+        finally:
+            cur.close()
+            conn.close()
 
 
 if __name__ == '__main__':
