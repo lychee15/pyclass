@@ -21,8 +21,13 @@ class BaikeCraw(object):
         self._url = 'http://baike.baidu.com/search/word?word='
         self._encoding = 'utf-8'
         self._pattern = re.compile("[/.,/#@$%^& ]")
-        self._topK = 30
+        self._topK = 30  # 关键词个数
         self._stopwords = sys.path[0] + '/stopwords.txt'
+        self._host = 'localhost'
+        self._port = 3306
+        self._user = 'root'
+        self._passwd = '8532936'
+        self._db = 'demo_web'
 
     def craw(self, keyword):
         url = self.get_url(keyword)
@@ -58,10 +63,10 @@ class BaikeCraw(object):
 
     def update(self):
         try:
-            conn = MySQLdb.connect(host='localhost', port=3306, user='root', passwd='8532936', db='demo_web',
+            conn = MySQLdb.connect(host=self._host, port=self._port, user=self._user, passwd=self._passwd, db=self._db,
                                    charset='utf8')
             cur = conn.cursor()
-            result = cur.execute('SELECT id,label from model WHERE keyword is null')
+            result = cur.execute('SELECT id,label FROM model WHERE keyword IS NULL OR keyword = ""')
             if result != 0:
                 for id, label in cur.fetchmany(result):
                     cur.execute('UPDATE model SET keyword="{0}" WHERE id={1}'.format(self.craw(label), id))
