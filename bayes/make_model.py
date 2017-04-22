@@ -4,6 +4,7 @@ import re
 import sys
 import os
 import MySQLdb
+from util.schemas import *
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -13,10 +14,10 @@ class MakeModel(object):
     def __init__(self):
         self._clzss = u'新闻'
         self._modelfile = sys.path[0] + '/model/' + self._clzss + '.txt'
-        self._host = 'localhost'
-        self._port = 3306
-        self._user = 'root'
-        self._passwd = '8532936'
+        self._host = xinrui['host']
+        self._port = xinrui['port']
+        self._user = xinrui['user']
+        self._passwd = xinrui['passwd']
         self._db = 'demo_web'
 
     def make_model(self):

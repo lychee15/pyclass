@@ -11,6 +11,7 @@ import jieba.analyse
 import re
 import MySQLdb
 import sys
+from util.schemas import *
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -23,10 +24,10 @@ class Spider(object):
         self._pattern = re.compile("[/.,/#@$%^& ]")
         self._topK = 30  # 关键词个数
         self._stopwords = sys.path[0] + '/stopwords.txt'  # 停用词位置
-        self._host = 'localhost'
-        self._port = 3306
-        self._user = 'root'
-        self._passwd = '8532936'
+        self._host = xinrui['host']
+        self._port = xinrui['port']
+        self._user = xinrui['user']
+        self._passwd = xinrui['passwd']
         self._db = 'demo_web'
 
     def craw(self, keyword):
