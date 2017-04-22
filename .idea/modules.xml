@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/baikecraw.iml" filepath="$PROJECT_DIR$/.idea/baikecraw.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pyclass.iml" filepath="$PROJECT_DIR$/.idea/pyclass.iml" />
     </modules>
   </component>
 </project>

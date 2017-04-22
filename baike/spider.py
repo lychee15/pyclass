@@ -1,6 +1,7 @@
 #!/bin/bash
 # -*-coding=utf-8-*-
 '''
+    根据关键词爬取百度百科
     http://baike.baidu.com/search/word?word=  # 得到url的方法
 '''
 import urllib
@@ -16,13 +17,13 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-class BaikeCraw(object):
+class Spider(object):
     def __init__(self):
-        self._url = 'http://baike.baidu.com/search/word?word='
+        self._url = 'http://baike.baidu.com/search/word?word='  # 爬取链接
         self._encoding = 'utf-8'
         self._pattern = re.compile("[/.,/#@$%^& ]")
         self._topK = 30  # 关键词个数
-        self._stopwords = sys.path[0] + '/stopwords.txt'
+        self._stopwords = sys.path[0] + '/stopwords.txt'  # 停用词位置
         self._host = 'localhost'
         self._port = 3306
         self._user = 'root'
@@ -78,5 +79,5 @@ class BaikeCraw(object):
 
 
 if __name__ == '__main__':
-    spider = BaikeCraw()
+    spider = Spider()
     spider.update()
