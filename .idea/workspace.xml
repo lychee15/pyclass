@@ -15,7 +15,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/pyclass$make_model.coverage" NAME="make_model Coverage Results" MODIFIED="1492923156528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bayes" />
-    <SUITE FILE_PATH="coverage/pyclass$spider.coverage" NAME="spider Coverage Results" MODIFIED="1492923161683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/baike" />
+    <SUITE FILE_PATH="coverage/pyclass$spider.coverage" NAME="spider Coverage Results" MODIFIED="1492923477797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/baike" />
     <SUITE FILE_PATH="coverage/pyclass$encrypt.coverage" NAME="encrypt Coverage Results" MODIFIED="1492921303510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -30,8 +30,8 @@
       <file leaf-file-name="make_model.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bayes/make_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+            <state relative-caret-position="243">
+              <caret line="66" column="21" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="21" />
               <folding>
                 <element signature="e#33#42#0" expanded="true" />
                 <marker date="1492922329759" expanded="true" signature="1406:1563" ph="SELECT label... model" />
@@ -67,8 +67,8 @@
       <file leaf-file-name="spider.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/baike/spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+            <state relative-caret-position="249">
+              <caret line="99" column="18" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
               <folding>
                 <element signature="e#114#127#0" expanded="true" />
                 <marker date="1492923156481" expanded="true" signature="2229:2426" ph="SELECT id,la... model" />
@@ -207,11 +207,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bayes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
+              <option name="myItemId" value="baike" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -690,19 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bayes/make_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
-          <folding>
-            <element signature="e#33#42#0" expanded="true" />
-            <marker date="1492922329759" expanded="true" signature="1406:1563" ph="SELECT label... model" />
-            <marker date="1492922329759" expanded="true" signature="1406:1565" ph="SELECT label... model" />
-            <marker date="1492922329759" expanded="true" signature="1406:1768" ph="SELECT label... model" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/util/encrypt.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
@@ -713,10 +696,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bayes/make_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="66" column="21" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="21" />
+          <folding>
+            <element signature="e#33#42#0" expanded="true" />
+            <marker date="1492922329759" expanded="true" signature="1406:1563" ph="SELECT label... model" />
+            <marker date="1492922329759" expanded="true" signature="1406:1565" ph="SELECT label... model" />
+            <marker date="1492922329759" expanded="true" signature="1406:1768" ph="SELECT label... model" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/baike/spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+        <state relative-caret-position="249">
+          <caret line="99" column="18" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
           <folding>
             <element signature="e#114#127#0" expanded="true" />
             <marker date="1492923156481" expanded="true" signature="2229:2426" ph="SELECT id,la... model" />
