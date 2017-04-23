@@ -18,17 +18,19 @@ sys.setdefaultencoding('utf-8')
 
 
 class Spider(object):
-    def __init__(self):
-        self._url = 'http://baike.baidu.com/search/word?word='  # 爬取链接
+    def __init__(self, url, name, attr):
+        self._url = url  # 爬取链接
+        self._name = name  # 抓取页面的html标签
+        self._attr = attr  # 抓取页面的html标签属性
         self._encoding = 'utf-8'
-        self._pattern = re.compile("[/.,/#@$%^& ]")
+        self._pattern = re.compile("[/.,/#@$%^& ]")  # 页面过滤内容
         self._topK = 30  # 关键词个数
         self._stopwords = sys.path[0] + '/stopwords.txt'  # 停用词位置
         self._host = xinrui['host']
         self._port = xinrui['port']
         self._user = xinrui['user']
         self._passwd = xinrui['passwd']
-        self._db = 'demo_web'
+        self._db = xinrui['db']
 
     def craw(self, keyword):
         url = self.get_url(keyword)
@@ -46,7 +48,7 @@ class Spider(object):
 
     def get_content(self, soup):
         content = []
-        summarys = soup.find_all('div', attrs={'class': 'para'})
+        summarys = soup.find_all(name=self._name, attrs=self._attr)
         for summary in summarys:
             content.append(summary.getText())
         result = re.sub(self._pattern, '', ''.join(content))
@@ -94,5 +96,5 @@ class Spider(object):
 
 
 if __name__ == '__main__':
-    spider = Spider()
-    spider.update()
+    baike = Spider('http://baike.baidu.com/search/word?word=', 'div', {'class': 'para'})
+    baike.update()

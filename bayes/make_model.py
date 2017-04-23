@@ -12,14 +12,14 @@ sys.setdefaultencoding('utf-8')
 
 
 class MakeModel(object):
-    def __init__(self):
-        self._clzss = '新闻'
-        self._modelfile = sys.path[0] + '/model/' + hmacmd5(self._clzss) + '.txt'
+    def __init__(self, clazz):
+        self._clzss = clazz
+        self._modelfile = sys.path[0] + '/model/' + Encrypt.hmacmd5(self._clzss) + '.txt'
         self._host = xinrui['host']
         self._port = xinrui['port']
         self._user = xinrui['user']
         self._passwd = xinrui['passwd']
-        self._db = 'demo_web'
+        self._db = xinrui['db']
 
     def make_model(self):
         try:
@@ -64,5 +64,5 @@ class MakeModel(object):
 
 
 if __name__ == '__main__':
-    bayes = MakeModel()
+    bayes = MakeModel('新闻')
     bayes.make_model()

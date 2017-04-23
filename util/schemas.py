@@ -6,4 +6,5 @@ xinrui = {
     'port': 3306,
     'user': 'root',
     'passwd': '8532936Lzc',
+    'db': 'demo_web'
 }

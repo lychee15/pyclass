@@ -8,20 +8,25 @@ import hmac
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-HMA_CMD5 = "qwertyuiopasdfghjklzxcvbnm"
 
+class Encrypt(object):
+    '''
+    加密key
+    '''
+    _HMA_CMD5 = "qwertyuiopasdfghjklzxcvbnm"
 
-def hmacmd5(str):
-    '''
-    hmacmd5加密字符串
-    :param str:
-    :return:
-    '''
-    if type(str) is types.StringType:
-        return hmac.new(HMA_CMD5, str, hashlib.md5).hexdigest()
-    else:
-        return ''
+    @classmethod
+    def hmacmd5(cls, str):
+        '''
+        hmacmd5加密字符串
+        :param str:
+        :return:
+        '''
+        if type(str) is types.StringType:
+            return hmac.new(cls._HMA_CMD5, str, hashlib.md5).hexdigest()
+        else:
+            return ''
 
 
 if __name__ == '__main__':
-    print hmacmd5('新闻')
+    print Encrypt.hmacmd5('新闻')
