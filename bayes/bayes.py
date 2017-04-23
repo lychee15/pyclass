@@ -11,20 +11,13 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-class MakeModel(object):
-    def __init__(self, clazz):
-        self._clzss = clazz
-        self._modelfile = sys.path[0] + '/model/' + Encrypt.hmacmd5(self._clzss) + '.txt'
-        self._host = xinrui['host']
-        self._port = xinrui['port']
-        self._user = xinrui['user']
-        self._passwd = xinrui['passwd']
-        self._db = xinrui['db']
-
-    def make_model(self):
+class Bayes(object):
+    @classmethod
+    def make_model(cls, clzss):
         try:
-            result = file(self._modelfile, 'w+')
-            keyword_set = self.get_keyword()
+            modelfile = sys.path[0] + '/model/' + Encrypt.hmacmd5(clzss) + '.txt'  # 模型文件位置
+            result = file(modelfile, 'w+')
+            keyword_set = cls.get_keyword(clzss)
             for label, keyword, newword in keyword_set:
                 words = set(filter(lambda s: s and s.strip(), (str(keyword) + ',' + str(newword)).replace('None', '').split(',')))
                 for word in words:
@@ -32,13 +25,14 @@ class MakeModel(object):
             result.close()
         except Exception, e:
             result.close()
-            os.remove(self._modelfile)
+            os.remove(modelfile)
             print Exception, ":", e
             exit(0)
 
-    def get_keyword(self):
+    @staticmethod
+    def get_keyword(clzss):
         try:
-            conn = MySQLdb.connect(host=self._host, port=self._port, user=self._user, passwd=self._passwd, db=self._db, charset='utf8')
+            conn = MySQLdb.connect(host=bayes['host'], port=bayes['port'], user=bayes['user'], passwd=bayes['passwd'], db=bayes['db'], charset='utf8')
             cur = conn.cursor()
             result_set = cur.fetchmany(cur.execute(
                 'SELECT '
@@ -52,7 +46,7 @@ class MakeModel(object):
                 'keyword IS NOT NULL AND keyword != "" '
                 'OR '
                 'newword IS NOT NULL AND newword != ""'
-                ')'.format(self._clzss)
+                ')'.format(clzss)
             ))
             cur.close()
             conn.commit()
@@ -64,5 +58,4 @@ class MakeModel(object):
 
 
 if __name__ == '__main__':
-    bayes = MakeModel('新闻')
-    bayes.make_model()
+    Bayes.make_model('新闻')

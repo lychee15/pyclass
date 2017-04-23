@@ -26,11 +26,6 @@ class Spider(object):
         self._pattern = re.compile("[/.,/#@$%^& ]")  # 页面过滤内容
         self._topK = 30  # 关键词个数
         self._stopwords = sys.path[0] + '/stopwords.txt'  # 停用词位置
-        self._host = xinrui['host']
-        self._port = xinrui['port']
-        self._user = xinrui['user']
-        self._passwd = xinrui['passwd']
-        self._db = xinrui['db']
 
     def craw(self, keyword):
         url = self.get_url(keyword)
@@ -43,7 +38,7 @@ class Spider(object):
         return urllib2.urlopen(url).read()
 
     def passer(self, url, html_count):
-        soup = BeautifulSoup(html_count, 'html.parser', from_encoding=self._encoding)
+        soup = BeautifulSoup(html_count, 'html.parser', self._encoding)
         return self.get_content(soup)
 
     def get_content(self, soup):
@@ -66,7 +61,8 @@ class Spider(object):
 
     def update(self):
         try:
-            conn = MySQLdb.connect(host=self._host, port=self._port, user=self._user, passwd=self._passwd, db=self._db, charset='utf8')
+            conn = MySQLdb.connect(host=spider['host'], port=spider['port'], user=spider['user'], passwd=spider['passwd'], db=spider['db'],
+                                   charset='utf8')
             cur = conn.cursor()
             result = cur.execute(
                 'SELECT '
